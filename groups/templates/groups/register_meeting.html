@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script>
+  $(function() {
+    $( "#date" ).datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+        nextText: 'Próximo',
+        prevText: 'Anterior'
+    });
+  });
+  </script>
+
+<h2>Registrar encontro de GC:</h2>
+
+<form method="post" action="{% url 'groups:submit_meeting' group.id %}">
+
+{% csrf_token %}
+
+{% if group_members %}
+    <ul>
+    {% for member in group_members %}
+        <li>
+        	<input type="checkbox" value="{{ member.id }}" name="members">{{ member.name }}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <label for"type">Tipo: </label>
+	<select id="id" name="type">
+	  <option value="ST">Estudo</option>
+	  <option value="RE">Relacionamento</option>
+	</select>
+
+	<label for"date">Data: </label>
+	<input id="date" name="date" nametype="text" />
+
+    <label for"comments">Comentários: </label>
+    <input type="text" id="comments" name="comments" />
+
+
+
+
+    <input type="submit" value="Registrar Encontro" />
+
+
+
+{% else %}
+    <p>Esse grupo não possui nenhum membro.</p>
+{% endif %}
+
+</form>
+
+{% endblock %}
+
+

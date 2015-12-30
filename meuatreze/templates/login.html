@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-4 col-md-offset-4 login_form">
+
+<h2>Faça o login para começar a utilizar o MeuAtreze</h2>
+
+{% if form.errors %}
+<div class="error_message">
+	<h3>Usuário ou senha incorretos. Por favor, tente novamente.</h3>
+</div>
+{% endif %}
+
+<form class="login_form" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+	{% csrf_token %}
+	
+	{{ form.username }}
+	{{ form.password }}
+	
+	<input type="submit" value="Fazer Login"/>
+	<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+</div>
+
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $("#id_username").attr('placeholder', 'Usuário');
+        $("#id_password").attr('placeholder', 'Senha');
+    });
+</script>
+
+
+{% endblock %}

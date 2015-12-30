@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="member_info">
+	<h3>Dados:</h3>
+
+	<p>Nome: {{ group.name }}</p>
+	<p>Líder: {{ group.leader }}</p>
+
+	<p>Membros do GCs: </p>
+
+	{% if group_members %}
+		<ul>
+			{% for member in group_members %}
+        		<li>{{ member.name }} <a href="{% url 'groups:remove_member_from_group' group.id member.id %}">Remover do GC</a></li>
+    		{% endfor %}
+		</ul>
+	{% else %}
+		<p>Esse GC ainda não possui nenhum membro.</p>
+	{% endif %}
+
+	<p>Últimos GCS: </p>
+
+	{% if last_meetings %}
+		<ul>
+			{% for meeting in last_meetings %}
+        		<li>{{ meeting.date }} - {{ meeting.get_type_display }}</li>
+    		{% endfor %}
+		</ul>
+	{% else %}
+		<p>Esse GC ainda não fez nenhuma reunião.</p>
+	{% endif %}
+
+</div>
+
+{% endblock %}

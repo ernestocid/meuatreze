@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script>
+  $(function() {
+    $("#member").autocomplete({
+      source: "/groups/autocomplete_member/",
+      minLength: 2,
+      dataType: 'json',
+      select: function (event, ui) {
+        $('#member_id').val(ui.item.id);
+      }
+    });
+  });
+</script>
+
+<div class="ui-widget">
+  <form action="{% url 'groups:add_member_to_group' group_id %}" method="post">
+      {% csrf_token %}
+      <label for="member">Membro: </label>
+      <input id="member" name="member">
+      <input type="hidden" id="member_id" name="member_id">
+
+      <input type="submit" value="Adicionar" />
+  </form>  
+</div>
+
+{% endblock %}

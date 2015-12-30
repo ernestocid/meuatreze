@@ -1,0 +1,100 @@
+body {
+  padding-top: 50px;
+}
+
+.login_form {
+	margin-top: 40px; 
+}
+
+.login_form form{
+  background:#f0f0f0;
+  padding: 18px;
+}
+
+.login_form h2 {
+	font-size: 18px;
+	font-weight: 200;
+	text-align: center;
+}
+
+.login_form input[type="text"],input[type="password"]{
+  width:100%;
+  background:#fff;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  padding:12px;
+  font-size:20px;
+  font-weight: 200;
+  color:#555;
+}
+
+.login_form input[type="submit"]{
+  width:100%;
+  background:#3399cc;
+  border:0;
+  padding:20px;
+  font-size:16px;
+  color:#fff;
+  cursor:pointer;
+  transition:background .3s;
+  -webkit-transition:background .3s;
+}
+
+.login_form input[type="submit"]:hover{
+  background:#2288bb;
+}
+
+.error_message {
+	background-color: #FFC2C2;
+	border: 1px solid;
+	border-color: #ED8C8C;
+	padding: 4px;
+	margin-top: 30px;
+	text-align: center;
+}
+
+.error_message h3 {
+	font-weight: 200;
+	font-size: 14px;
+	margin: 4px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.content_block {
+  margin-top: 50px;
+}
+
+.content_block h2 {
+  margin-bottom: 40px;
+}
+
+table, th, td {
+  border: 1px solid white;
+}
+
+.entries_table {
+  width: 100%;
+}
+
+.entries_table th {
+  background-color: #5CB3ED;
+  color: white;
+  font-weight: normal;
+  padding: 12px;
+}
+
+.entries_table td {
+  background-color: #F0F0F0;
+  color: rgb(111, 111, 111);
+  padding: 10px;
+}
+
+.add_entry {
+  text-align: right;
+  margin-top: 15px;
+  font-size: 16px;
+}

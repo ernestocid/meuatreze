@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Informações pessoais de {{ authenticated_username }}</h1>
+
+<h2>GCs que lidero: </h2>
+
+{% if authenticated_member_groups %}
+	<ul>
+		{% for group in authenticated_member_groups %}
+    		<li>
+    			<a href="{% url 'groups:group_detail' group.id %}">{{ group.name }}</a>
+    			<a href="{% url 'groups:search_member_for_group' group.id %}">Adicionar Membro</a>
+    		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>Você não é líder de GC.</p>
+{% endif %}
+
+{% endblock %}

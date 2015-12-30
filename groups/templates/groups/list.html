@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2 content_block">
+
+    {% if group_list %}
+        <table class="entries_table">
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <th>Líder</th>
+                <th>Membros</th>
+            </tr>
+
+            {% for group in group_list %}
+
+            <tr>
+                <td>
+                    <a href="{% url 'groups:group_detail' group.id %}">{{ group.name }}</a>
+                </td>
+                <td>
+                    {{ group.leader }}
+                </td>
+                <td align="center">
+                    {{ group.members.count }}
+                </td>
+                <td>
+                    <a href="{% url 'groups:group_update' group.id %}">Editar</a>
+                </td>
+                <td>
+                    <a href="{% url 'groups:group_delete' group.id %}">Apagar</a>
+                </td>
+                <td>
+                    <a href="{% url 'groups:search_member_for_group' group.id %}">Adicionar Membro</a>
+                </td>
+                <td>
+                    <a href="{% url 'groups:register_meeting' group.id %}">Registrar Encontro</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+    {% if perms.members.add_member %}
+    <div class="add_entry">
+        <a href="{% url 'groups:group_add' %}">Novo Grupo</a>
+    </div>
+    {% endif %}
+
+
+    {% else %}
+        <p>Nenhum membro cadastrado.</p>
+    {% endif %}
+
+    
+
+</div>
+
+{% endblock %}

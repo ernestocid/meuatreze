@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2 content_block">
+
+	<h2>{{ member.name }}</h2>
+
+	<p>E-mail: {{ member.email }}</p>
+	<p>
+		Líder de GC: 
+		{% if member.is_leader %}
+			Sim
+		{% else %}
+			Não
+		{% endif %}	
+	</p>
+	<p>
+		Líder de Departamento:
+		{% if member.is_deparment_leader %}
+			Sim
+		{% else %}
+			Não
+		{% endif %}	
+	</p>
+	
+	<p>Membro dos seguintes GCs: </p>
+
+	{% if member_groups %}
+		<ul>
+			{% for group in member_groups %}
+        		<li>{{ group.name }}</li>
+    		{% endfor %}
+		</ul>
+	{% else %}
+		<p>Não é membro de nenhum GC.</p>
+	{% endif %}
+
+	<p>É lider dos seguintes GCs: </p>
+
+	{% if leader_of_groups %}
+		<ul>
+			{% for group in leader_of_groups %}
+        		<li>{{ group.name }}</li>
+    		{% endfor %}
+		</ul>
+	{% else %}
+		<p>Não é líder de nenhum GC.</p>
+	{% endif %}
+
+</div>
+
+{% endblock %}
+
+
+
+
+

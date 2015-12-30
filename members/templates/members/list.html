@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2 content_block">
+    
+    {% if all_members %}
+    
+    <table class="entries_table">
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <th>e-mail</th>
+                <th>Líder de GC</th>
+                <th>Líder de Depart.</th>
+            </tr>
+
+            {% for member in all_members %}
+            
+            <tr>
+                <td>
+                    <a href="{% url 'members:member_detail' member.id %}">{{ member.name }}</a>
+                </td>
+                <td>
+                    {{ member.email }}
+                </td>
+                <td align="center">
+                    {% if member.is_leader %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                <td align="center">
+                    {% if member.is_department_leader %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                
+                <td>
+                    {% if perms.members.change_member %}
+                        <a href="{% url 'members:member_update' member.id %}">Editar</a>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if perms.members.delete_member %}
+                        <a href="{% url 'members:member_delete' member.id %}">Apagar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            
+            {% endfor %}
+        
+        </tbody>
+    </table>
+
+    {% if perms.members.add_member %}
+    <div class="add_entry">
+        <a href="{% url 'members:member_add' %}">Novo Membro</a>
+    </div>
+    {% endif %}
+
+    {% else %}
+        <p>Nenhum membro cadastrado.</p>
+    {% endif %}
+  
+</div>
+
+{% endblock %}
+
+
+
+
+
+

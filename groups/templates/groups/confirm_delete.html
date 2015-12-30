@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+    Tem certeza que deseja apagar o grupo "{{ object }}" ?
+    <input type="submit" value="Sim" />
+</form>
+
+{% endblock %}
